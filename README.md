@@ -7,7 +7,7 @@
 > * Install https://nodejs.org/en/download/ 
 > * `npm install`
 > * `npm install --global expo --force` and `npm install --global yarn --force`
-> * Edit the system environment variables -> System Properties -> Advanced -> Environment Variables -> Edit Path -> Add: `C:\Users\[USERNAME]\AppData\Roaming\npm`
+> * Search: Edit the system environment variables -> System Properties -> Advanced -> Environment Variables -> Edit Path -> Add: `C:\Users\[USERNAME]\AppData\Roaming\npm`
 
 ### In sbubackend:
 > `npm run dev`
@@ -16,3 +16,14 @@
 > `expo start`
 
 > http://localhost:19002/
+
+
+### Possible errors:
+___
+Execution policy may need to be changed to run scripts: ("...cannot be loaded because the execution of scripts is disabled on this system")
+> * Run Powershell as administrator
+> * `Set-ExecutionPolicy RemoteSigned`
+> * If you wish, you can set the policy back to default with `Set-ExecutionPolicy Restricted`
+
+ 
+> MapsSecondFrontEnd -> metro.config.js -> Change line 2 from `const { getDefaultConfig } = require('exp');` to `const { getDefaultConfig } = require('expo/metro-config');`
