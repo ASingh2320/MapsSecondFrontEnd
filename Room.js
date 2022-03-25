@@ -8,6 +8,7 @@ export default function Room(props){
     let block = props.block;
     let x = block[0] * boxsize;
     let y = block[1] * boxsize;
+
     //Formulas 
     let width = (block[2] - block[0] + 1) * boxsize;
     let height = (block[3] - block[1] + 1) * boxsize;
@@ -36,12 +37,14 @@ export default function Room(props){
     return (
         <G>
             {//Incorrect with borders
-            <Rect x={x + ""} y={y + ""} width={width + ""} height={width + ""} fill="#FF3333"  
-                strokeWidth="3" stroke="rgb(0,0,0)"/>}
+            <Rect x={x + ""} y={y + ""} width={width + ""} height={height + ""} fill="#FF3333"  
+               strokeWidth="3" stroke="rgb(0,0,0)"/>
+        }
             {//Correct with no borders
-            /*roomblock.map(block => 
-                <Rect x={block[0] + ""} y={block[1] + ""} width={boxsize + ""} height={boxsize + ""} fill="#FF3333" />
-            )*/}
+            // roomblock.map(block => 
+            // <Rect x={block[0] + ""} y={block[1] + ""} width={boxsize + ""} height={boxsize + ""} fill="#FF3333" />
+            // )
+        }
         </G>
     );
 }
