@@ -36,11 +36,11 @@ export default function Room(props){
 
     return (
         <G>
-            {//Incorrect with borders
+            {
             <Rect x={x + ""} y={y + ""} width={width + ""} height={height + ""} fill="#FF3333"  
                strokeWidth="3" stroke="rgb(0,0,0)"/>
         }
-            {//Correct with no borders
+            {
             // roomblock.map(block => 
             // <Rect x={block[0] + ""} y={block[1] + ""} width={boxsize + ""} height={boxsize + ""} fill="#FF3333" />
             // )
