@@ -17,6 +17,7 @@ export default function Building(props){
         }
     }
 
+    /*
     useEffect(() => {
         let hallway = [];
         let hallwaycomp = props.defaultFloor.hallway;
@@ -27,7 +28,7 @@ export default function Building(props){
 
       }, []);
 
-
+      */
     return (
         <View>
             <Floor id={1} floor={currentFloor} floorhall={hall} boxsize={boxsize}/>

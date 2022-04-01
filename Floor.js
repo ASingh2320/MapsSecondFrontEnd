@@ -6,6 +6,7 @@ import Hall from './Hall';
 
 export default function Floor(props){
     let rooms = props.floor.rooms;
+    console.log(rooms);
     let halls = props.floorhall;
     let boxsize = props.boxsize;
     return (
