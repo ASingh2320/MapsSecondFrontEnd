@@ -5,6 +5,7 @@ import Svg, { Circle, Rect, Path, Polyline, G, Text as Textsvg, ForeignObject } 
 export default function Hall(props){
     let boxsize = props.boxsize;
     let hw = props.hallbox;
+    
     return (
         <Rect x={hw[0] + ""} y={hw[1] + ""} width= {boxsize + ""} height={boxsize + ""} fill="blue" />
     );

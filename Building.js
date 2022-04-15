@@ -6,33 +6,27 @@ export default function Building(props){
 
     let [currentFloor, changeFloor] = useState(props.defaultFloor);
     let allFloors = props.floors;
-    let [hall, updateHall] = useState([]);
+    let [hall, changeHall] = useState(props.defaultFloor.hallway);
+    console.log(allFloors);
     let boxsize = 50;
 
-    const deComp = (lowx, lowy, highx, highy, arr) => {
-        for(let i = lowx; i < highx + 1; i++){
-            for(let j = lowy; j < highy + 1; j++){
-                arr.push([i * boxsize, j * boxsize]);
-            }
-        }
+    const moveFloor = (dir) => {
+        let lvl = parseInt(currentFloor.level);
+        let newlvl = (lvl + dir) + "";
+        const newfloor = allFloors.find(x => x.level === newlvl)
+        if(newfloor !== undefined){
+            changeFloor(newfloor);
+            changeHall(newfloor.hallway)
+        } 
+            
+
     }
 
-    /*
-    useEffect(() => {
-        let hallway = [];
-        let hallwaycomp = props.defaultFloor.hallway;
-        for(let i = 0; i < hallwaycomp.length; i = i + 4){
-            deComp(hallwaycomp[i], hallwaycomp[i + 1], hallwaycomp[i + 2], hallwaycomp[i + 3], hallway);
-        }
-        updateHall(hallway);
-
-      }, []);
-
-      */
     return (
         <View>
             <Floor id={1} floor={currentFloor} floorhall={hall} boxsize={boxsize}/>
-            <Text>Floor ^ v</Text>
+            <Button title='Up' onPress={() => moveFloor(1)}/>
+            <Button title='Down' onPress={() => moveFloor(-1)}/>
         </View>
     );
 }

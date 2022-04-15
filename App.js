@@ -5,6 +5,7 @@ import Building from './Building';
 
 export default function App() {
   let [data, setData] = useState("No Data");
+  let [building, setBuilding] = useState({});
   let [info, setInfo] = useState([]);
   let [showRoom, toggleRoom] = useState(false);
 
@@ -18,6 +19,30 @@ export default function App() {
   const floors = [
     {
       level: "1",
+      hallway: [1,6,15,9, 0,3,11,4, 11,1,12,6, 2,4,3,6, 5,4,6,6, 4,5,5,6],
+      rooms: [
+          {name: "105", block: [0,1, 2,2], door: [2,1]},
+          {name: "109", block: [3,1, 8,2], door: [8,1]},
+          {name: "109A", block: [9,1, 10,2], door: [8,1]},
+          {name: "ENTR3", block: [11,0, 11,0], door: [11,0]},
+          {name: "119", block: [12,1, 17,5], door: [12,3]},
+          {name: "RR1", block: [0,4, 1,5], door: [1,4]},
+          {name: "STR1", block: [3,4, 3,5], door: [3,4]},
+          {name: "ELE1", block: [4,4, 4,4], door: [4,4]},
+          {name: "RR2", block: [6,4, 6,5], door: [5,6]},
+          {name: "112", block: [7,4, 8,5], door: [8,4]},
+          {name: "118", block: [9,4, 10,5], door: [10,5]},
+          {name: "ENTR1", block: [0,7, 0,7], door: [0,7]},
+          {name: "ENTR2", block: [15,7, 15,7], door: [15,7]},
+          {name: "100", block: [0,9, 4,13], door: [3,8]},
+          {name: "102", block: [5,9, 9,13], door: [3,8]},
+          {name: "104", block: [10,9, 14,13], door: [3,8]},
+          {name: "STR2", block: [17,4, 17,5], door: [17,4]},
+          {name: "ENTR4", block: [18,4, 18,4], door: [18,4]},
+      ]
+  },
+    {
+      level: "2",
       hallway: [0, 2, 20, 2],
       rooms: [
         {name: "201", block: [0, 0, 3, 1], door: [1, 1]},
@@ -37,14 +62,14 @@ export default function App() {
     },
   ]; 
 
-  const doFetch = () =>{
-    fetch('http://localhost:3001/api/buildings')
+  const doFetch = async () =>{
+    fetch('http://localhost:3001/api/buildings/Frey Hall')
       .then((res) => res.json())
       .then((json) => setInfo(json))
       .catch((error) => console.log(error));
-    toggleRoom(true);
+      toggleRoom(true)
   }
-
+  
   const doPost = () =>{
     let building = {
       name: name,
@@ -76,6 +101,7 @@ export default function App() {
       {/*<Button title="Post Data" onPress={doPost}></Button>*/}
       {/*info && info.map((x) => <Text key={x._id}>{x.name}</Text>)*/}
       {showRoom && info.map((x) => <Building key={x._id} defaultFloor = {x.floors[0]} floors = {x.floors}/>)}
+      {/*showRoom && <Building key={building._id} defaultFloor = {building.floors[0]} floors = {building.floors}/>*/}
     </View>
   );
 }
