@@ -17,6 +17,7 @@ export default function Floor(props){
         }
     }
     useEffect(() => {
+        console.log("Use Effect triggered")
         let hblock = [];
         let hallcomp = props.floorhall;
         for(let i = 0; i < hallcomp.length; i = i + 4){
@@ -24,7 +25,7 @@ export default function Floor(props){
         }
         console.log(hblock);
         updateHall(hblock);
-      }, []);
+      }, [props.floorhall]);
 
 
     return (
