@@ -6,26 +6,8 @@ import Hall from './Hall';
 
 export default function Floor(props){
     let rooms = props.floor.rooms;
-    let [halls, updateHall] = useState([]);
+    let halls = props.floor.hallblocks;
     let boxsize = props.boxsize;
-
-    const deComp = (lowx, lowy, highx, highy, arr) => {
-        for(let i = lowx; i < highx + 1; i++){
-            for(let j = lowy; j < highy + 1; j++){
-                arr.push([i * boxsize, j * boxsize]);
-            }
-        }
-    }
-    useEffect(() => {
-        console.log("Use Effect triggered")
-        let hblock = [];
-        let hallcomp = props.floorhall;
-        for(let i = 0; i < hallcomp.length; i = i + 4){
-            deComp(hallcomp[i], hallcomp[i + 1], hallcomp[i + 2], hallcomp[i + 3], hblock);
-        }
-        console.log(hblock);
-        updateHall(hblock);
-      }, [props.floorhall]);
 
 
     return (

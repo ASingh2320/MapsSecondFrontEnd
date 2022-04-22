@@ -3,12 +3,13 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 import Floor from './Floor';
 
 export default function Building(props){
-
+    
     let [currentFloor, changeFloor] = useState(props.defaultFloor);
     let allFloors = props.floors;
     let [hall, changeHall] = useState(props.defaultFloor.hallway);
     console.log(allFloors);
     let boxsize = 50;
+
 
     const moveFloor = (dir) => {
         let lvl = parseInt(currentFloor.level);
@@ -16,7 +17,7 @@ export default function Building(props){
         const newfloor = allFloors.find(x => x.level === newlvl)
         if(newfloor !== undefined){
             changeFloor(newfloor);
-            changeHall(newfloor.hallway)
+            //changeHall(newfloor.hallway)
         } 
             
 

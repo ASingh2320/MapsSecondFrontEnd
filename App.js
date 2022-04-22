@@ -8,7 +8,7 @@ export default function App() {
   let [building, setBuilding] = useState({});
   let [info, setInfo] = useState([]);
   let [showRoom, toggleRoom] = useState(false);
-
+  let boxsize = 50;
 
   const name = "Frey Hall";
   const entrances = [
@@ -62,9 +62,46 @@ export default function App() {
     },
   ]; 
 
+  const deComp = (lowx, lowy, highx, highy, arr, dups) => {
+    for(let i = lowx; i < highx + 1; i++){
+        for(let j = lowy; j < highy + 1; j++){
+            let key = i + " " + j;
+            
+            if(dups[key] == 1){
+              continue;
+            }
+            
+            arr.push([i * boxsize, j * boxsize]);
+            dups[key] = 1;
+        }
+    }
+  }
+
+  const deCompFloor = (floor) => {
+    let hblock = [];
+    let hallcomp = floor.hallway;
+    let dups = {};
+    for(let i = 0; i < hallcomp.length; i = i + 4){
+        deComp(hallcomp[i], hallcomp[i + 1], hallcomp[i + 2], hallcomp[i + 3], hblock, dups);
+    }
+    floor.hallblocks = hblock;
+    
+  }
+  const editJSON = (json) => {
+    let floors = json[0].floors;
+    for(let i = 0; i < floors.length; i++){
+      deCompFloor(floors[i]);
+      console.log("decomp");
+      console.log(floors[i].hallblocks);
+    }
+    return json;
+  }
+
   const doFetch = async () =>{
     fetch('http://localhost:3001/api/buildings/Frey Hall')
       .then((res) => res.json())
+      .then((json) => editJSON(json))
+      //.then((json) => console.log("test", json))
       .then((json) => setInfo(json))
       .catch((error) => console.log(error));
       toggleRoom(true)
