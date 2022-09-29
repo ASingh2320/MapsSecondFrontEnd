@@ -13,7 +13,7 @@
 > `npm run dev`
 
 ### In MapsSecondFrontEnd:
-> `expo start`
+> `npm start`
 
 > http://localhost:19002/
 
